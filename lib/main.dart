@@ -1,20 +1,59 @@
 import 'package:flutter/material.dart';
+import 'package:prueba/screens/LoginScreen.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
-  runApp(const MainApp());
+Future<void> main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(const Main());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class Main extends StatelessWidget {
+  const Main({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+      home: Home(),
     );
   }
+}
+
+class Home extends StatefulWidget {
+  const Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Prueba'),
+      ),
+      body: cuerpo(context),
+    );
+  }
+}
+
+Widget cuerpo(context) {
+  return Container(
+    child: (Column(
+      children: <Widget>[
+        const Text("Welcome"),
+        BotonLogin(context)
+      ],
+    )),
+  );
+}
+
+Widget BotonLogin(context) {
+  return ElevatedButton(
+      onPressed: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => const Login()));
+      },
+      child: const Text("Login"));
 }
