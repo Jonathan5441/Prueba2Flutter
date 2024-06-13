@@ -39,9 +39,12 @@ class _HomeState extends State<Home> {
 
 Widget cuerpo(context){
   return Container(
+    decoration: const BoxDecoration(
+      image: DecorationImage(image: NetworkImage('https://marketplace.canva.com/EAFjTH3TIXM/1/0/900w/canva-fondo-de-pantalla-para-tel%C3%A9fono-corazones-femenino-rosa-OFxrhfLu0Jc.jpg'),
+      fit: BoxFit.cover)
+    ),
     child: (Column(
       children: <Widget>[
-        Text("Welcome"),
         campoCorreo(),
         campoClave(),
         botonInicio(context),
@@ -107,10 +110,17 @@ Future<void> login(context) async {
 
     ///////////////////
   } on FirebaseAuthException catch (e) {
-    if (e.code == 'user-not-found') {
-      print('No user found for that email.');
-    } else if (e.code == 'wrong-password') {
-      print('Wrong password provided for that user.');
-    }
+   showDialog(context: context, builder: (context){
+    return(
+      AlertDialog(
+        title: Text("Error"),
+        content: Text("Usuario no registrado"),
+        actions: <Widget>[
+          TextButton(onPressed:()=>Navigator.of(context).pop(),
+          child: const Text('Aceptar'))
+        ],
+      )
+    );
+  }); 
   }
 }

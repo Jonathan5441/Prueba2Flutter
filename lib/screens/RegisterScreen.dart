@@ -39,10 +39,13 @@ class _HomeState extends State<Home> {
 
 Widget cuerpo(context) {
   return Container(
+    decoration: const BoxDecoration(
+      image: DecorationImage(image: NetworkImage('https://img.freepik.com/vector-gratis/fondo-pantalla-telefono-movil-memphis-pastel-abstracto_53876-140335.jpg'),
+      fit: BoxFit.cover)
+    ),
     child: (Column(
       children: <Widget>[
-        Text("Welcome"),
-        campoNombres(),
+        campoNombre(),
         campoCorreo(),
         campoClave(),
         botonRegistro(context)
@@ -52,16 +55,16 @@ Widget cuerpo(context) {
 }
 
 final TextEditingController _nombres = TextEditingController();
-Widget campoNombres() {
+Widget campoNombre() {
   return Container(
     padding: const EdgeInsets.all(20),
     child: Column(
       children: [
-        const Text("Nombre y Apellido:"),
+        const Text("Ingresa tu nick:"),
         (TextField(
           controller: _nombres,
           decoration:
-              const InputDecoration(hintText: "Ingresa tu nombre y apellido"),
+              const InputDecoration(hintText: "Ingresa tu nick"),
         )),
       ],
     ),

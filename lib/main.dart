@@ -39,13 +39,16 @@ class _HomeState extends State<Home> {
 }
 
 Widget cuerpo(context) {
-  return Container(
-    child: (Column(
-      children: <Widget>[
-        const Text("Welcome"),
-        BotonLogin(context)
-      ],
-    )),
+  return Center(
+    child: Container(
+      child: (Column(
+        children: <Widget>[
+          const Text("Jonathan Carrasco"),
+          const Text("Jonathan5441"),
+          BotonLogin(context)
+        ],
+      )),
+    ),
   );
 }
 
